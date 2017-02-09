@@ -1,0 +1,20 @@
+{
+  "name": "bandwagoner",
+  "version": "1.0.0",
+  "description": "game",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Nickpopadopolous/Project-Two.git"
+  },
+  "author": "Nick Pearce, Luis Martinez, Eric Springfield, Windsor Edeling, and Shivam Parekh",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Nickpopadopolous/Project-Two/issues"
+  },
+  "homepage": "https://github.com/Nickpopadopolous/Project-Two#readme"
+}
