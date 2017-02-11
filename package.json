@@ -16,5 +16,11 @@
   "bugs": {
     "url": "https://github.com/Nickpopadopolous/Project-Two/issues"
   },
-  "homepage": "https://github.com/Nickpopadopolous/Project-Two#readme"
+  "homepage": "https://github.com/Nickpopadopolous/Project-Two#readme",
+  "dependencies": {
+    "body-parser": "^1.16.1",
+    "express": "^4.14.1",
+    "method-override": "^2.3.7",
+    "sequelize": "^3.30.2"
+  }
 }
