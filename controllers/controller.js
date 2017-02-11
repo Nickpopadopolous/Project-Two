@@ -7,14 +7,13 @@ var router = express.Router();
 
 router.get('/', function(req, res){
 
-  res.redirect('../main.html');
+  res.redirect('/main');
 
 });
 
 router.get('/main', function (req, res) {
 
-  .all(function (data) {
-
+  preload.all(function (data) {
 
   });
 
