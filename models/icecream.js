@@ -1,4 +1,4 @@
-var iceCream = function(game, x , y, key, frane) {
+var IceCream = function(game, x , y, key, frame) {
 	key = 'iceCreams';
 	Phaser.Sprite.call(this, game, x, y, key, frame);
 
@@ -16,14 +16,14 @@ var iceCream = function(game, x , y, key, frane) {
 	this.events.onRevive.add(this.onRevive, this);
 };
 
-iceCream.prototype = Object.create(Phaser.Sprite.prototype);
+IceCream.prototype = Object.create(Phaser.Sprite.prototype);
 iceCream.prototype.constructor = iceCream;
 
-iceCream.prototype.onRevive = function() {
+IceCream.prototype.onRevive = function() {
 	this.body.velocity.x = -300;
 	this.animations.play('spin', 10, true);
 };
 
-iceCream.prototype.onKill = function() {
+IceCream.prototype.onKill = function() {
 	this.animations.frame = 0;
 }

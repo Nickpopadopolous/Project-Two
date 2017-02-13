@@ -1,6 +1,6 @@
-Runner.MainMenu = function() {};
+IceCream.MainMenu = function() {};
 
-Runner.MainMenu.prototype = {
+IceCream.MainMenu.prototype = {
   create: function() {
     this.background = this.game.add.tileSprite(0, 0, this.game.width, 512, 'background');
     this.background.autoScroll(-100, 0);
