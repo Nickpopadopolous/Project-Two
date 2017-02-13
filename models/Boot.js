@@ -1,9 +1,9 @@
 
-var Runner = function() {};
+var IceCream = function() {};
 
-Runner.Boot = function() {};
+IceCream.Boot = function() {};
 
-Runner.Boot.prototype = {
+IceCream.Boot.prototype = {
   preload: function() {
     this.load.image('logo', 'assets/images/logo.png');
     this.load.image('preloadbar', 'assets/images/preloader-bar.png');
