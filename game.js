@@ -1,28 +1,12 @@
-<!doctype html> 
-<html lang="en"> 
-<head> 
-  <meta charset="UTF-8" />
-    <title>Phaser - Making your first game, part 9</title>
-  <script type="text/javascript" src="libs/phaser.min.js"></script>
-    <style type="text/css">
-        body {
-            margin: 0;
-        }
-    </style>
-</head>
-<body>
-
-<script type="text/javascript">
-
 var game = new Phaser.Game(1277, 600, Phaser.AUTO, '', { preload: preload, create: create, update: update });
 
 function preload() {
 
-    game.load.image('sky', 'sprites/background_1.png');
-    game.load.image('ground', 'sprites/ledge.png');
-    game.load.image('star', 'sprites/cone.png');
-    game.load.image('dude', 'sprites/hero.png', 32, 48);
-    game.load.image('enemy', 'sprites/monster_right.png')
+    game.load.image('sky', 'assets/background_1.png');
+    game.load.image('ground', 'assets/ledge.png');
+    game.load.image('cone', 'assets/cone.png');
+    game.load.image('dude', 'assets/hero.png', 32, 48);
+    game.load.image('enemy', 'assets/monster_right.png')
 
 }
 
@@ -31,7 +15,7 @@ var platforms;
 var cursors;
 var enemy;
 
-var stars;
+var cones;
 var score = 0;
 var scoreText;
 
@@ -98,30 +82,28 @@ function create() {
     var tween = game.add.tween(enemy).to( { x: 300 }, 20000, Phaser.Easing.Linear.None, true, 0, 1000, true);
 
     //  Finally some stars to collect
-    stars = game.add.group();
+    cones = game.add.group();
 
     //  We will enable physics for any star that is created in this group
-    stars.enableBody = true;
+    cones.enableBody = true;
 
-    stars.physicsBodyType = Phaser.Physics.ARCADE;
+    cones.physicsBodyType = Phaser.Physics.ARCADE;
 
     //  Here we'll create 12 of them evenly spaced apart
     for (var i = 0; i < 20; i++)
     {
         //  Create a star inside of the 'stars' group
-        var star = stars.create(i * 70, 0, 'star');
+        var cone = cones.create(i * 70, 0, 'cone');
 
-        //  Let gravity do its thing
-        star.body.gravity.y = 300;
+        cone.body.gravity.y = 300;
 
         //  This just gives each star a slightly random bounce value
-        star.body.bounce.setTo(0.9, 0.9);
+        cone.body.bounce.setTo(0.9, 0.9);
 
-        //y = 0.7 + Math.random() * 0.2;
 
-        star.body.collideWorldBounds=true;
-        star.body.gravity.x = game.rnd.integerInRange(-80, 80);
-        star.body.gravity.y = 0 + Math.random() * 100;        
+        cone.body.collideWorldBounds=true;
+        cone.body.gravity.x = game.rnd.integerInRange(-80, 80);
+        cone.body.gravity.y = 0 + Math.random() * 100;        
     }
 
     //  The score
@@ -129,7 +111,6 @@ function create() {
 
     //  Our controls.
     cursors = game.input.keyboard.createCursorKeys();
-
     
 }
 
@@ -137,13 +118,13 @@ function update() {
 
     //  Collide the player and the stars with the platforms
     game.physics.arcade.collide(player, platforms);
-    game.physics.arcade.collide(stars, platforms);
+    game.physics.arcade.collide(cones, platforms);
     game.physics.arcade.collide(enemy, platforms);
     game.physics.arcade.collide(enemy, player);
-    game.physics.arcade.collide(enemy, stars);
+    game.physics.arcade.collide(enemy, cones);
 
     //  Checks to see if the player overlaps with any of the stars, if he does call the collectStar function
-    game.physics.arcade.overlap(player, stars, collectStar, null, this);
+    game.physics.arcade.overlap(player, cones, collectStar, null, this);
 
     //  Reset the players velocity (movement)
     player.body.velocity.x = 0;
@@ -178,18 +159,13 @@ function update() {
 
 }
 
-function collectStar (player, star) {
+function collectStar (player, cone) {
     
     // Removes the star from the screen
-    star.kill();
+    cone.kill();
 
     //  Add and update the score
     score += 10;
     scoreText.text = 'Score: ' + score;
 
 }
-
-</script>
-
-</body>
-</html>
