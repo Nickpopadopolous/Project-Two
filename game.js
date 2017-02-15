@@ -3,10 +3,11 @@ var game = new Phaser.Game(1277, 600, Phaser.AUTO, '', { preload: preload, creat
 function preload() {
 
     game.load.image('sky', 'assets/background_1.png');
+    game.load.image('trees', 'assets/treesa.png');
     game.load.image('ground', 'assets/ledge.png');
     game.load.image('cone', 'assets/cone.png');
     game.load.image('dude', 'assets/hero.png', 32, 48);
-    game.load.image('enemy', 'assets/monster_right.png')
+    game.load.image('enemy', 'assets/monster_right.png');
 
 }
 
@@ -19,6 +20,7 @@ var enemy2;
 var enemy3;
 var enemy4;
 
+var trees;
 var cones;
 var score = 0;
 var scoreText;
@@ -30,6 +32,9 @@ function create() {
 
     //  A simple background for our game
     game.add.sprite(0, 0, 'sky');
+
+    //Create Trees for background
+    trees = game.add.sprite(0, 150, 'trees');
 
     //  The platforms group contains the ground and the 2 ledges we can jump on
     platforms = game.add.group();
@@ -50,10 +55,10 @@ function create() {
     var ledge = platforms.create(400, 400, 'ground');
     ledge.body.immovable = true;
 
-    ledge = platforms.create(50, 250, 'ground');
+    ledge = platforms.create(30, 250, 'ground');
     ledge.body.immovable = true;
 
-    ledge = platforms.create(700, 200, 'ground');
+    ledge = platforms.create(830, 200, 'ground');
     ledge.body.immovable = true;
 
     // The player and its settings
@@ -83,7 +88,7 @@ function create() {
     enemy.body.gravity.y = 300;
     enemy.body.collideWorldBounds = true;
 
-    var tween = game.add.tween(enemy).to( { x: 300 }, 20000, Phaser.Easing.Linear.None, true, 0, 1000, true);
+    //var tween = game.add.tween(enemy).to( { x: 300 }, 20000, Phaser.Easing.Linear.None, true, 0, 1000, true);
 
     //enemy1
     enemy1 = game.add.sprite(500, game.world.height - 500, 'enemy');
@@ -95,7 +100,7 @@ function create() {
     enemy1.body.gravity.y = 300;
     enemy1.body.collideWorldBounds = true;
 
-    var tween = game.add.tween(enemy1).to( { x: 300 }, 20000, Phaser.Easing.Linear.None, true, 0, 1000, true);
+    //var tween = game.add.tween(enemy1).to( { x: 300 }, 20000, Phaser.Easing.Linear.None, true, 0, 1000, true);
 
     //enemy2
     enemy2 = game.add.sprite(200, game.world.height - 300, 'enemy');
@@ -107,7 +112,7 @@ function create() {
     enemy2.body.gravity.y = 300;
     enemy2.body.collideWorldBounds = true;
 
-    var tween = game.add.tween(enemy2).to( { x: 300 }, 20000, Phaser.Easing.Linear.None, true, 0, 1000, true);
+    //var tween = game.add.tween(enemy2).to( { x: 300 }, 20000, Phaser.Easing.Linear.None, true, 0, 1000, true);
 
      //enemy3
     enemy3 = game.add.sprite(600, game.world.height - 200, 'enemy');
@@ -119,7 +124,7 @@ function create() {
     enemy3.body.gravity.y = 300;
     enemy3.body.collideWorldBounds = true;
 
-    var tween = game.add.tween(enemy3).to( { x: 300 }, 20000, Phaser.Easing.Linear.None, true, 0, 1000, true);
+    //var tween = game.add.tween(enemy3).to( { x: 300 }, 20000, Phaser.Easing.Linear.None, true, 0, 1000, true);
 
      //enemy4
     enemy4 = game.add.sprite(100, game.world.height - 500, 'enemy');
@@ -131,7 +136,7 @@ function create() {
     enemy4.body.gravity.y = 300;
     enemy4.body.collideWorldBounds = true;
 
-    var tween = game.add.tween(enemy4).to( { x: 300 }, 20000, Phaser.Easing.Linear.None, true, 0, 1000, true);
+    //var tween = game.add.tween(enemy4).to( { x: 300 }, 20000, Phaser.Easing.Linear.None, true, 0, 1000, true);
     
 
     //  Finally some stars to collect
@@ -143,7 +148,7 @@ function create() {
     cones.physicsBodyType = Phaser.Physics.ARCADE;
 
     //  Here we'll create 12 of them evenly spaced apart
-    for (var i = 0; i < 20; i++)
+    for (var i = 0; i < 30; i++)
     {
         //  Create a star inside of the 'stars' group
         var cone = cones.create(i * 70, 0, 'cone');
@@ -172,21 +177,46 @@ function update() {
     //  Collide the player and the stars with the platforms
     game.physics.arcade.collide(player, platforms);
     game.physics.arcade.collide(cones, platforms);
+//=================================================//
     game.physics.arcade.collide(enemy, platforms);
     game.physics.arcade.collide(enemy, player);
     game.physics.arcade.collide(enemy, cones);
+    // game.physics.arcade.collide(enemy, enemy1);
+    // game.physics.arcade.collide(enemy, enemy2);
+    // game.physics.arcade.collide(enemy, enemy3);
+    // game.physics.arcade.collide(enemy, enemy4);
+//=================================================//
     game.physics.arcade.collide(enemy1, platforms);
     game.physics.arcade.collide(enemy1, player);
     game.physics.arcade.collide(enemy1, cones);
+    //game.physics.arcade.collide(enemy1, enemy);
+    // game.physics.arcade.collide(enemy1, enemy2);
+    // game.physics.arcade.collide(enemy1, enemy3);
+    // game.physics.arcade.collide(enemy1, enemy4);
+//=================================================//
     game.physics.arcade.collide(enemy2, platforms);
     game.physics.arcade.collide(enemy2, player);
     game.physics.arcade.collide(enemy2, cones);
+    //game.physics.arcade.collide(enemy2, enemy);
+    //game.physics.arcade.collide(enemy2, enemy1);
+    // game.physics.arcade.collide(enemy2, enemy3);
+    // game.physics.arcade.collide(enemy2, enemy4);
+//=================================================//
     game.physics.arcade.collide(enemy3, platforms);
     game.physics.arcade.collide(enemy3, player);
     game.physics.arcade.collide(enemy3, cones);
+    //game.physics.arcade.collide(enemy3, enemy);
+    //game.physics.arcade.collide(enemy3, enemy1);
+    //game.physics.arcade.collide(enemy3, enemy2);
+    //game.physics.arcade.collide(enemy3, enemy4);
+//=================================================//
     game.physics.arcade.collide(enemy4, platforms);
     game.physics.arcade.collide(enemy4, player);
     game.physics.arcade.collide(enemy4, cones);
+    //game.physics.arcade.collide(enemy4, enemy);
+    //game.physics.arcade.collide(enemy4, enemy1);
+    //game.physics.arcade.collide(enemy4, enemy2);
+    //game.physics.arcade.collide(enemy4, enemy3);
 
     //  Checks to see if the player overlaps with any of the stars, if he does call the collectStar function
     game.physics.arcade.overlap(player, cones, collectStar, null, this);
