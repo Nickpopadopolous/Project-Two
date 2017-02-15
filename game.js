@@ -14,6 +14,10 @@ var player;
 var platforms;
 var cursors;
 var enemy;
+var enemy1;
+var enemy2;
+var enemy3;
+var enemy4;
 
 var cones;
 var score = 0;
@@ -43,10 +47,10 @@ function create() {
     ground.body.immovable = true;
 
     //  Now let's create two ledges
-    var ledge = platforms.create(300, 400, 'ground');
+    var ledge = platforms.create(400, 400, 'ground');
     ledge.body.immovable = true;
 
-    ledge = platforms.create(-100, 250, 'ground');
+    ledge = platforms.create(50, 250, 'ground');
     ledge.body.immovable = true;
 
     ledge = platforms.create(700, 200, 'ground');
@@ -69,8 +73,8 @@ function create() {
     player.animations.add('left', [0, 1, 2, 3], 10, true);
     player.animations.add('right', [5, 6, 7, 8], 10, true);
 
-    //enemies
-    enemy = game.add.sprite(800, game.world.height - 300, 'enemy');
+    //enemy
+    enemy = game.add.sprite(800, game.world.height - 500, 'enemy');
     enemy.scale.setTo(0.6, 0.6);
 
     game.physics.arcade.enable(enemy);
@@ -80,6 +84,55 @@ function create() {
     enemy.body.collideWorldBounds = true;
 
     var tween = game.add.tween(enemy).to( { x: 300 }, 20000, Phaser.Easing.Linear.None, true, 0, 1000, true);
+
+    //enemy1
+    enemy1 = game.add.sprite(500, game.world.height - 500, 'enemy');
+    enemy1.scale.setTo(0.6, 0.6);
+
+    game.physics.arcade.enable(enemy1);
+
+    enemy1.body.bounce.y = 0.2;
+    enemy1.body.gravity.y = 300;
+    enemy1.body.collideWorldBounds = true;
+
+    var tween = game.add.tween(enemy1).to( { x: 300 }, 20000, Phaser.Easing.Linear.None, true, 0, 1000, true);
+
+    //enemy2
+    enemy2 = game.add.sprite(200, game.world.height - 300, 'enemy');
+    enemy2.scale.setTo(0.6, 0.6);
+
+    game.physics.arcade.enable(enemy2);
+
+    enemy2.body.bounce.y = 0.2;
+    enemy2.body.gravity.y = 300;
+    enemy2.body.collideWorldBounds = true;
+
+    var tween = game.add.tween(enemy2).to( { x: 300 }, 20000, Phaser.Easing.Linear.None, true, 0, 1000, true);
+
+     //enemy3
+    enemy3 = game.add.sprite(600, game.world.height - 200, 'enemy');
+    enemy3.scale.setTo(0.6, 0.6);
+
+    game.physics.arcade.enable(enemy3);
+
+    enemy3.body.bounce.y = 0.2;
+    enemy3.body.gravity.y = 300;
+    enemy3.body.collideWorldBounds = true;
+
+    var tween = game.add.tween(enemy3).to( { x: 300 }, 20000, Phaser.Easing.Linear.None, true, 0, 1000, true);
+
+     //enemy4
+    enemy4 = game.add.sprite(100, game.world.height - 500, 'enemy');
+    enemy4.scale.setTo(0.6, 0.6);
+
+    game.physics.arcade.enable(enemy4);
+
+    enemy4.body.bounce.y = 0.2;
+    enemy4.body.gravity.y = 300;
+    enemy4.body.collideWorldBounds = true;
+
+    var tween = game.add.tween(enemy4).to( { x: 300 }, 20000, Phaser.Easing.Linear.None, true, 0, 1000, true);
+    
 
     //  Finally some stars to collect
     cones = game.add.group();
@@ -122,6 +175,18 @@ function update() {
     game.physics.arcade.collide(enemy, platforms);
     game.physics.arcade.collide(enemy, player);
     game.physics.arcade.collide(enemy, cones);
+    game.physics.arcade.collide(enemy1, platforms);
+    game.physics.arcade.collide(enemy1, player);
+    game.physics.arcade.collide(enemy1, cones);
+    game.physics.arcade.collide(enemy2, platforms);
+    game.physics.arcade.collide(enemy2, player);
+    game.physics.arcade.collide(enemy2, cones);
+    game.physics.arcade.collide(enemy3, platforms);
+    game.physics.arcade.collide(enemy3, player);
+    game.physics.arcade.collide(enemy3, cones);
+    game.physics.arcade.collide(enemy4, platforms);
+    game.physics.arcade.collide(enemy4, player);
+    game.physics.arcade.collide(enemy4, cones);
 
     //  Checks to see if the player overlaps with any of the stars, if he does call the collectStar function
     game.physics.arcade.overlap(player, cones, collectStar, null, this);
