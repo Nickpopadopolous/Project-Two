@@ -1,25 +1,40 @@
 // packages
 
 var express = require('express');
+// var phaser = require('phaser')
+
 var router = express.Router();
+
+// var game = require('../game.js');
 
 // routes for express
 
-//Routes for Express
-
 router.get('/', function(req, res){
 
-  res.redirect('/main');
+  res.redirect('/main-game');
 
 });
 
-router.get('/main', function (req, res) {
+router.get('/main-game', function (req, res) {
 
-  preload.all(function (data) {
+	// res.json(res);
 
-  });
-  
+	// res.render('/main-game');
+
+	// res.sendFile(__dirname, '/../main-game');
+
+	console.log(res);
+
+});
+
+router.post('/main-game/create', function (req, res) {
+
 });
 
 
-module.exports = router;
+router.put('/main-game/update', function (req, res) {
+
+});
+
+
+module.exports = router; 
