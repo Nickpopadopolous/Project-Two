@@ -3,7 +3,8 @@
 var express = require('express');
 var bodyParser = require('body-parser');
 var methodOverride = require('method-override');
-var http = require('http');
+var path = require('path');
+//var http = require('http');
 
 // create the app
 
@@ -11,16 +12,16 @@ var app = express();
 
 // Lets create a server (Allowed to create server before request/response)
 
-function handleRequest(request, response) {
+// function handleRequest(request, response) {
 
-	response.end("It Works!" + request.url);
-}
+// 	response.end("It Works!" + request.url);
+// }
 
-var server = http.createServer(handleRequest);
+// var server = http.createServer(handleRequest);
 
 // serve static files from the current directory
 
-app.use(express.static(__dirname));
+app.use(express.static(__dirname + '/assets'));
 
 // port
 
@@ -40,9 +41,7 @@ app.use(methodOverride("_method"));
 
 // routes
 
-var routes = require('./controllers/controller.js');
-
-app.use('/', routes);
+require("./routing/html-routes.js")(app);
 
 // listenter
 

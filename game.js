@@ -58,7 +58,7 @@ function create() {
     ledge = platforms.create(30, 250, 'ground');
     ledge.body.immovable = true;
 
-    ledge = platforms.create(830, 200, 'ground');
+    ledge = platforms.create(800, 200, 'ground');
     ledge.body.immovable = true;
 
     // The player and its settings
@@ -148,12 +148,12 @@ function create() {
     cones.physicsBodyType = Phaser.Physics.ARCADE;
 
     //  Here we'll create 12 of them evenly spaced apart
-    for (var i = 0; i < 30; i++)
+    for (var i = 0; i < 20; i++)
     {
         //  Create a star inside of the 'stars' group
         var cone = cones.create(i * 70, 0, 'cone');
 
-        cone.body.gravity.y = 300;
+        cone.body.gravity.y = 0;
 
         //  This just gives each star a slightly random bounce value
         cone.body.bounce.setTo(0.9, 0.9);
