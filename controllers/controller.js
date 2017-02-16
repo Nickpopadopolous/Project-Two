@@ -11,30 +11,8 @@ var router = express.Router();
 
 router.get('/', function(req, res){
 
-  res.redirect('/main-game');
+    res.sendFile(__dirname, '/../main-game');
 
 });
-
-router.get('/main-game', function (req, res) {
-
-	// res.json(res);
-
-	// res.render('/main-game');
-
-	// res.sendFile(__dirname, '/../main-game');
-
-	console.log(res);
-
-});
-
-router.post('/main-game/create', function (req, res) {
-
-});
-
-
-router.put('/main-game/update', function (req, res) {
-
-});
-
 
 module.exports = router; 

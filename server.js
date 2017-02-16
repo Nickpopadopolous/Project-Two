@@ -1,26 +1,19 @@
 // packages
 
-var express = require('express');
 var bodyParser = require('body-parser');
+var express = require('express');
 var methodOverride = require('method-override');
 var http = require('http');
+var hb = require('handlebars');
+var exphbs = require('express-handlebars');
 
 // create the app
 
 var app = express();
 
-// Lets create a server (Allowed to create server before request/response)
-
-function handleRequest(request, response) {
-
-	response.end("It Works!" + request.url);
-}
-
-var server = http.createServer(handleRequest);
-
 // serve static files from the current directory
 
-app.use(express.static(__dirname));
+app.use(express.static('public'));
 
 // port
 
@@ -33,21 +26,25 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.text({ type: 'text/html' }));
 app.use(bodyParser.json({ type: 'application/*+json' }));
 app.use(bodyParser.raw({ type: 'application/vnd.custom-type' }));
-
+app.engine("handlebars", exphbs({ defaultLayout: "main" }));
+app.set("view engine", "handlebars");
 // method override
 
 app.use(methodOverride("_method"));
 
 // routes
+app.get('/', function (req, res) {
 
-var routes = require('./controllers/controller.js');
-
-app.use('/', routes);
+	res.render('index');
+});
+// var routes = require('./controllers/controller.js');
+//
+// app.use('/', routes);
 
 // listenter
 
 app.listen(PORT, function() {
 
-	console.log("server is working");
+	console.log("server is working open http://localhost:3000");
 
 });
