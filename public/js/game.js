@@ -1,4 +1,4 @@
-var game = new Phaser.Game(1277, 600, Phaser.AUTO, '', {preload: preload, create: create, update: update });
+var game = new Phaser.Game(1277, 600, Phaser.AUTO, '', { preload: preload, create: create, update: update });
 
 function preload() {
 
@@ -190,7 +190,7 @@ function create() {
 
     broccolis.enableBody = true;
 
-    broccolis.scale.setTo(.3, .3);
+    //broccolis.scale.setTo(.3, .3);
 
     broccolis.physicsBodyType = Phaser.Physics.ARCADE;
 
@@ -235,6 +235,7 @@ function update() {
     game.physics.arcade.collide(cones, platforms);
     //game.physics.arcade.collide(cones, broccolis);
     game.physics.arcade.collide(platforms, broccolis);
+    game.physics.arcade.collide(ground, broccolis);
 
 //=================================================//
     game.physics.arcade.collide(enemy, platforms);
