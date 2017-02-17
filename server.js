@@ -26,17 +26,18 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.text({ type: 'text/html' }));
 app.use(bodyParser.json({ type: 'application/*+json' }));
 app.use(bodyParser.raw({ type: 'application/vnd.custom-type' }));
+
+// handlebars 
+
 app.engine("handlebars", exphbs({ defaultLayout: "main" }));
 app.set("view engine", "handlebars");
+
 // method override
 
 app.use(methodOverride("_method"));
 
 // routes
-// app.get('/', function (req, res) {
 
-// 	res.render('index');
-// });
 var routes = require('./controllers/controller.js');
 //
 app.use('/', routes);
