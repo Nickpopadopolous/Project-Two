@@ -46,6 +46,8 @@ app.use("/update", routes);
 
 app.use("/create", routes);
 
+app.use("/leader", routes);
+
 // listenter
 
 app.listen(PORT, function() {

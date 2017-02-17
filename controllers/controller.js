@@ -13,6 +13,12 @@ router.get('/', function(req, res){
 
 });
 
+router.get('/leader', function(req, res){
+
+    res.render('leaderboard');
+
+});
+
 router.post('/create', function (req, res) {
 
 	res.render('leaderboard');

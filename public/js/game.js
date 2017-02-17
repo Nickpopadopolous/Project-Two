@@ -349,11 +349,6 @@ function collectBroccoli (player, broc) {
 
 function gameEnd() {
 
-    endText = game.add.text(500, 16, 'Game Over Sucker!', { fontSize: '40px', fill: '#000' });
-
-    player.animations.stop(null, true);
-    cones.animations.stop(null, true);
-    broccolis.animations.stop(null, true);
-
+   game.destroy();
 
 }
