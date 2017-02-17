@@ -1,5 +1,12 @@
 var game = new Phaser.Game(1277, 600, Phaser.AUTO, '', { preload: preload, create: create, update: update });
 
+//function boot() {
+
+  //  preload: function(){
+
+  //  }
+//}
+
 function preload() {
 
     game.load.image('sky', '../images/background_1.png');
@@ -9,11 +16,13 @@ function preload() {
     game.load.image('dude', '../images/hero.png', 32, 48);
     game.load.image('enemy', '../images/monster_right.png');
     game.load.image('broccoli', '../images/broccoli.png');
+   // game.load.image('playerLeft', '../images/hero_left.png');
 
 
 }
 
 var player;
+//var playerLeft;
 var platforms;
 var cursors;
 var ground;
@@ -33,10 +42,10 @@ var endText;
 var textStyle = { font: '64px Desyrel', align: 'center'};
 
 var timer;
-var timerText;
-var milliseconds = 0;
-var seconds = 0;
-var minutes = 0;
+// var timerText;
+// var milliseconds = 0;
+// var seconds = 0;
+// var minutes = 0;
 
 var total = 0;
 
@@ -61,7 +70,7 @@ function create() {
     var ground = platforms.create(0, game.world.height - 25, 'ground');
 
     //  Scale it to fit the width of the game (the original sprite is 400x32 in size)
-    ground.scale.setTo(3, 3);
+    ground.scale.setTo(4, 4);
 
     //  This stops it from falling away when you jump on it
     ground.body.immovable = true;
@@ -79,7 +88,7 @@ function create() {
     // The player and its settings
     player = game.add.sprite(32, game.world.height - 150, 'dude');
 
-    player.scale.setTo(.8, .8);
+    player.scale.setTo(.6, .6);
 
     //  We need to enable physics on the player
     game.physics.arcade.enable(player);
@@ -90,8 +99,8 @@ function create() {
     player.body.collideWorldBounds = true;
 
     //  Our two animations, walking left and right.
-    player.animations.add('left', [0, 1, 2, 3], 10, false);
-    player.animations.add('right', [5, 6, 7, 8], 10, false);
+    player.animations.add('left', 0, true);
+    player.animations.add('right', 0 ,true);
 
     //enemy
     enemy = game.add.sprite(950, game.world.height - 495, 'enemy');
@@ -188,6 +197,8 @@ function create() {
 
     broccolis.enableBody = true;
 
+    broccolis.scale.setTo(.3, .3);
+
     broccolis.physicsBodyType = Phaser.Physics.ARCADE;
 
     for (var i = 0; i < 8; i++)
@@ -215,10 +226,7 @@ function create() {
     cursors = game.input.keyboard.createCursorKeys();
 
     // TIMER
-    game.time.events.add(Phaser.Timer.SECOND * 15, gameEnd);
-
-    // TIMER 2 CREATE
-    timer = game.add.bitmapText(250, 250, '00:00:00', textStyle);
+    game.time.events.add(Phaser.Timer.SECOND * 20, gameEnd);
 
 }
 
