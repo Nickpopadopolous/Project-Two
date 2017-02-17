@@ -33,13 +33,17 @@ app.set("view engine", "handlebars");
 app.use(methodOverride("_method"));
 
 // routes
-app.get('/', function (req, res) {
+// app.get('/', function (req, res) {
 
-	res.render('index');
-});
-// var routes = require('./controllers/controller.js');
+// 	res.render('index');
+// });
+var routes = require('./controllers/controller.js');
 //
-// app.use('/', routes);
+app.use('/', routes);
+
+app.use("/update", routes);
+
+app.use("/create", routes);
 
 // listenter
 

@@ -1,1 +1,1 @@
-INSERT INTO leaders (name, score) VALUES (Shivam, 200);
+INSERT INTO leaders (name, score) VALUES ('Shivam', 200);
