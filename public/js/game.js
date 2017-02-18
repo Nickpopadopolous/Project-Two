@@ -219,7 +219,7 @@ function create() {
     cursors = game.input.keyboard.createCursorKeys();
 
     // TIMER
-    game.time.events.add(Phaser.Timer.SECOND * 20, gameEnd);
+    game.time.events.add(Phaser.Timer.SECOND * 30, gameEnd);
 
 }
 
