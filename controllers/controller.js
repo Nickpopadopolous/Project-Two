@@ -1,8 +1,9 @@
 // packages
 var express = require('express');
 
-var router = express.Router();
+var iceCream = require('../models/newgame.js');
 
+var router = express.Router();
 
 
 // routes for express
@@ -15,13 +16,19 @@ router.get('/', function(req, res){
 
 router.get('/leader', function(req, res){
 
-    res.render('leaderboard');
+  iceCream.all(function (data) {
 
+    var hbsObj = { leaderboard: data };
+    res.render('index', hbsObj);
+
+  });
 });
 
 router.post('/create', function (req, res) {
 
-	res.render('leaderboard');
+	iceCream.create(req.body.name, function(result){
+
+	});
 
 });
 
