@@ -59,19 +59,16 @@ var leader = {
 
     update: function(id, callback) {
 
-        IceScore.update({
+        IceScore.update({},
+            {
 
-   },
-   {
+                where: {id: id}
 
-     where: {id: id}
+            }).then(function () {
 
-     }).then(function(){
+            callback();
 
-        callback();
 
-    });
-   }  
 
 };
 
