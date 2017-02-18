@@ -9,7 +9,9 @@ var Sequelize = require("sequelize");
 var sequelize = require("../config/connection.js");
 
 // model creation
+
 var IceScore = sequelize.define('leaders', {
+
     id: {
         type: Sequelize.INTEGER,
         autoIncrement: true,
@@ -23,6 +25,7 @@ var IceScore = sequelize.define('leaders', {
         type: Sequelize.INTEGER,
         allowNull: false
     },
+
 });
 
 IceScore.sync();
@@ -43,18 +46,13 @@ var leader = {
 
     create: function(name, score, callback) {
 
-         IceScore.create({
+        IceScore.create({
 
             name: name
 
         }).then(function() {
 
             callback();
-
-        }).catch(function(err) {
-
-            callback(err);
-
         });
  
     },
@@ -73,8 +71,9 @@ var leader = {
         callback();
 
     });
+   }  
 
-});
+};
 
 module.exports = leader;
 

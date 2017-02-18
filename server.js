@@ -3,7 +3,6 @@
 var bodyParser = require('body-parser');
 var express = require('express');
 var methodOverride = require('method-override');
-var http = require('http');
 var hb = require('handlebars');
 var exphbs = require('express-handlebars');
 
